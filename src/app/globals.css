@@ -1,16 +1,37 @@
 @import "tailwindcss";
 
+@theme {
+  --font-vazirmatn: var(--font-vazirmatn);
+  --font-VazirFd: var(--font-vazirfd);
+  --font-YekanBakh: var(--font-yekanbakh);
+  --font-IranianSans: var(--font-iraniansans);
+}
+
 body {
+  width: 100%;
   max-width: 1440px;
-  padding: 0;
-  margin: 0;
-  font-family: var(--font-vazirmatn) , sans-serif;
+  min-height: 100vh;
+  margin: 0 auto;
+  font-family: var(--font-vazirmatn), sans-serif;
+  overflow-x: hidden;
+  background-color: #fff;
+  box-sizing: border-box;
 }
 
 *,
 *::after,
 * ::before {
-  box-sizing: border-box;
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
 }
 
 input,
@@ -21,11 +42,4 @@ button {
 a {
   text-decoration: none;
   cursor: pointer;
-}
-
-@theme inline {
-  --font-vazirmatn: var(--font-vazirmatn);
-  --font-VazirFd: var(--font-vazirfd);
-  --font-YekanBakh: var(--font-yekanbakh);
-  --font-IranianSans: var(--font-iraniansans);
 }
