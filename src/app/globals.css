@@ -5,6 +5,7 @@
   --font-VazirFd: var(--font-vazirfd);
   --font-YekanBakh: var(--font-yekanbakh);
   --font-IranianSans: var(--font-iraniansans);
+  --breakpoint-xs: 27rem;
 }
 
 body {
@@ -22,16 +23,6 @@ body {
 *::after,
 * ::before {
   box-sizing: inherit;
-}
-
-h1,
-h2,
-h3,
-p,
-ul,
-li {
-  margin: 0;
-  padding: 0;
 }
 
 input,
