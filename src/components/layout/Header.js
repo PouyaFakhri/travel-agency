@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import AuthModal from "../templates/AuthModal";
 
 import Burger from "../icons/Burger";
 import LogIn from "../icons/LogIn";
@@ -23,18 +24,20 @@ const navLinks = [
 function Header() {
   const pathName = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [isAuthModalOn , setIsAuthModalOn] = useState(false)
+   const [phone , setPhone] = useState("")
 
   return (
     <header className="w-full flex items-center justify-between font-YekanBakh py-3.5 relative">
       {/* Mobile menu button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen(true)}
         className="sm:hidden cursor-pointer"
       >
         <Burger />
       </button>
 
-      <LogIn className="sm:hidden cursor-pointer" />
+      <LogIn className="sm:hidden cursor-pointer" onClick={() => setIsAuthModalOn(true)}  />
 
       {/* Mobile menu overlay */}
       {isOpen && (
@@ -89,7 +92,7 @@ function Header() {
                 href={href}
                 className={`relative pb-1 font-medium transition-colors duration-200 ${
                   isActive
-                    ? "text-[#28A745] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#28A745]"
+                    ? "text-[#28A745] after:Absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#28A745]"
                     : "text-[#282828] hover:text-[#28A745]"
                 }`}
               >
@@ -101,14 +104,15 @@ function Header() {
       </div>
 
       {/* Desktop login/register */}
-      <div className="hidden sm:flex items-center border-2 border-[#28A745] rounded-lg sm:px-1 md:px-1.5 xl:px-2 sm:py-1 md:py-1.5 font-VazirFd font-medium sm:text-[15px] md:text-lg text-[#28A745] hover:bg-[#28A745]/10 transition-all duration-200">
-        <button className="flex items-center gap-1 cursor-pointer">
+      <div className="hidden sm:flex items-center border-2 border-[#28A745] rounded-lg sm:px-1 md:px-1.5 xl:px-2 sm:py-1 md:py-1.5 font-VazirFd font-medium sm:text-[15px] md:text-lg text-[#28A745] hover:bg-[#28A745]/10 transition-all duration-200 cursor-pointer" onClick={() => setIsAuthModalOn(true)}  >
+        <button className="flex items-center gap-1 cursor-pointer ">
           <Person className="sm:w-5  sm:h-5 md:w-6 md:h-6" />
           <span>ورود</span>
         </button>
         <span className="mx-1 w-[1.5px] h-[20px] bg-[#28A745]" />
         <button className="cursor-pointer">ثبت نام</button>
       </div>
+      {isAuthModalOn && <AuthModal modalState={{setIsAuthModalOn , isAuthModalOn , phone , setPhone}} />}
     </header>
   );
 }

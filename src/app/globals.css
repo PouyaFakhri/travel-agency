@@ -6,10 +6,12 @@
   --font-YekanBakh: var(--font-yekanbakh);
   --font-IranianSans: var(--font-iraniansans);
   --breakpoint-xs: 27rem;
+  --shadow-modal : '0px 4px 4px 0px #00000040'
 }
 
 body {
   width: 100%;
+  position: relative;
   max-width: 1440px;
   min-height: 100vh;
   margin: 0 auto;

@@ -14,11 +14,12 @@ export default function RootLayout({ children }) {
     <html
       lang="fa"
       dir="rtl"
-      className={`${VazirFd.variable} ${IranianSans.variable} ${YekanBakh.variable} ${Vazirmatn.variable}`}
+      className={`${VazirFd.variable} ${IranianSans.variable} ${YekanBakh.variable} ${Vazirmatn.variable} `}
     >
       <body>
-        <Layout >{children}</Layout>
+        <Layout>{children}</Layout>
       </body>
     </html>
   );
 }
+
