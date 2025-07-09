@@ -29,12 +29,11 @@ function CheckOtpForm({setStep}) {
           <OtpInput
             value={otp}
             onChange={setOtp}
-            numInputs={4}
+            numInputs={5}
             renderInput={(props) => (
               <input
                 {...props}
-                style={{ width: "15%", direction: "ltr" }}
-                className="mx-auto h-11 border border-gray-300 rounded-md text-center focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="!direction-ltr mx-auto !w-[15%] sm:!w-[13%] md:!w-[12%] h-11 sm:h-12 md:h-13 border border-gray-300 rounded-md text-center focus:outline-none focus:ring-2 focus:ring-green-500"
               />
             )}
             renderSeparator={<span className="mx-1">-</span>}

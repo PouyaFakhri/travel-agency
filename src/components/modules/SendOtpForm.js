@@ -44,7 +44,7 @@ function SendOtpForm({closeHandler}) {
             {...register("phone")}
             className="border-[#00000040] border-[1px] border-solid h-[54px] leading-[54px] px-3 rounded-[6px] placeholder:text-[15px] font-VazirFd font-light text-right text[#00000080] focus:outline-none focus:ring-2 focus:ring-[#28A745]"
           />
-          <p className="w-full h-1 text-red-600 text-xs mt-1.5 text-right pr-1 ">
+          <p className="w-full h-1 text-red-600 text-xs md:text-[14px] mt-1.5 md:mt-1 text-right pr-1 ">
             {errors.phone?.message}
           </p>
         </div>
