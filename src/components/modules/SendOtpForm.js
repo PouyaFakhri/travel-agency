@@ -4,9 +4,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { phoneSchema } from "src/utils/schema";
 import Close from "../icons/Close";
+import { UseSendOtp } from "src/services/mutations";
+import { toast } from "react-toastify";
 
-function SendOtpForm({closeHandler}) {
+function SendOtpForm({ closeHandler, setStep, setPhone, phone }) {
   const schema = phoneSchema();
+  const { mutate } = UseSendOtp();
   const {
     register,
     handleSubmit,
@@ -14,13 +17,23 @@ function SendOtpForm({closeHandler}) {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
-    console.log(data);
+    mutate(data, {
+      onSuccess: (res) => {
+        toast.success(res?.message);
+        toast(res?.code);
+        setPhone(data);
+        setStep(2);
+      },
+      onError: (err) => {
+        toast.error("خطایی رخ داده است");
+      },
+    });
   };
   return (
     <>
       {/* Close Button */}
       <Close
-        onClick={() => closeHandler() }
+        onClick={() => closeHandler()}
         className="absolute left-[5%] top-[5%] cursor-pointer"
       />
       <form
@@ -33,19 +46,19 @@ function SendOtpForm({closeHandler}) {
         </h2>
         {/* input section */}
         <div className="w-full text-center flex flex-col gap-2.5 md:gap-4.5">
-          <label htmlFor="phone" className="font-light text-right">
+          <label htmlFor="mobile" className="font-light text-right">
             شماره موبایل خود را وارد کنید
           </label>
           <input
             type="tel"
-            name="phone"
-            id="phone"
+            name="mobile"
+            id="mobile"
             placeholder="0912***6654"
-            {...register("phone")}
+            {...register("mobile")}
             className="border-[#00000040] border-[1px] border-solid h-[54px] leading-[54px] px-3 rounded-[6px] placeholder:text-[15px] font-VazirFd font-light text-right text[#00000080] focus:outline-none focus:ring-2 focus:ring-[#28A745]"
           />
           <p className="w-full h-1 text-red-600 text-xs md:text-[14px] mt-1.5 md:mt-1 text-right pr-1 ">
-            {errors.phone?.message}
+            {errors.mobile?.message}
           </p>
         </div>
         {/* submit button */}

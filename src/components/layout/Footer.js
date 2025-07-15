@@ -27,23 +27,23 @@ const footerSections = [
 const footerLogos = [
   {
     src: "/Images/Aira.png",
-    alt: "لوگوی ایرآ",
+    alt: " نماد عضویت ایرآ - تورینو",
   },
   {
     src: "/Images/samandehi.png",
-    alt: "لوگوی ساماندهی",
+    alt: " لوگوی ساماندهی - تورینو",
   },
   {
     src: "/Images/Ecunion.png",
-    alt: "لوگوی اتحادیه کشوری",
+    alt: "لوگوی اتحادیه کشوری - تورینو",
   },
   {
     src: "/Images/Passenger.png",
-    alt: "نماد اعتماد مسافران",
+    alt: "نماد اعتماد مسافران - تورینو",
   },
   {
     src: "/Images/Airline.png",
-    alt: "لوگوی شرکت هواپیمایی",
+    alt: "لوگوی شرکت هواپیمایی - تورینو",
   },
 ];
 
@@ -101,11 +101,11 @@ function Footer() {
               src="/Images/Logo.png"
               width={166}
               height={44}
-              alt="logo"
+              alt="لوگوی تورینو"
               className="w-[100px] h-[30px] xs:w-[166px] xs:h-[44]"
             />
             <a
-              href="tel:+the:8574-021"
+              href="tel:0218574"
               className="text-xs text-[#000000] xs:text-[12px] sm:text-[15px]"
             >
               <span>تلفن پشتیبانی: </span>

@@ -36,3 +36,54 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+
+.epic-toast {
+  width: 330px;
+  background: linear-gradient(
+    135deg,
+    rgba(248, 247, 247, 0.8),
+    rgba(9, 95, 242, 0.6)
+  ) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(5, 245, 221, 0.1) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+  color: rgb(253, 248, 248) !important;
+  font-family: "vazirmatin" !important;
+  font-size: 16px !important;
+  padding: 12px 16px !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.epic-toast-body {
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+}
+
+.Toastify__close-button {
+  color: rgba(251, 250, 250, 0.8) !important;
+  opacity: 0.7 !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.Toastify__close-button:hover {
+  opacity: 1 !important;
+}
+
+.epic-toast-progress {
+  background: linear-gradient(
+    to right,
+    rgb(29, 10, 241),
+    rgb(5, 203, 234)
+  ) !important;
+  height: 4px !important;
+  border-radius: 4px !important;
+}
+
+.Toastify__toast--success {
+  background: linear-gradient(135deg, #cfd6d4, #059669) !important;
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(135deg, #eae7e7, #b91c1c) !important;
+}

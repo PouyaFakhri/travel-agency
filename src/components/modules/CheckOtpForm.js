@@ -3,15 +3,64 @@
 import OtpInput from "react-otp-input";
 import { useState } from "react";
 import ArrowLeft from "../icons/ArrowLeft";
+import { UseCountdownTimer } from "src/hooks/UseCountdownTimer";
+import { UseSendOtp } from "src/services/mutations";
+import { UseCheckOtp } from "src/services/mutations";
+import { toast } from "react-toastify";
+import { setCookie } from "src/utils/cookies";
 
-function CheckOtpForm({setStep}) {
+function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
   const [otp, setOtp] = useState("");
-  const onOtpSubmit = () => {
-    console.log(otp);
+  const { formattedTime, reset, isRunning } = UseCountdownTimer(120);
+  const { mutate: sendOtpMutate } = UseSendOtp();
+  const { mutate: checkOtpMutate } = UseCheckOtp();
+  const resendCodeHandler = () => {
+    sendOtpMutate(phone, {
+      onSuccess: (res) => {
+        toast.success(res?.message);
+        toast(res?.code);
+        reset();
+        setOtp("");
+      },
+      onError: (err) => {
+        toast.error("خطایی رخ داده است");
+      },
+    });
   };
+
+  const CheckOtpHandler = () => {
+    if (otp.length !== 6) {
+      toast.error("کد تأیید باید ۶ رقم باشد");
+      return;
+    }
+
+    checkOtpMutate(
+      {
+        mobile: phone["mobile"],
+        code: otp,
+      },
+      {
+        onSuccess: (res) => {
+          toast.success(res?.message || " با موفقیت وارد شدید ");
+          setCookie("accessToken", res?.accessToken, 7);
+          setCookie("refreshToken", res?.refreshToken, 30);
+          setIsLogin(true);
+          setIsAuthModalOn(false);
+        },
+        onError: (err) => {
+          if (err?.response?.status === 400) {
+            toast.error(" کد وارد شده فاقد اعتبار است ");
+          } else {
+            toast.error("خطایی رخ داده است");
+          }
+        },
+      }
+    );
+  };
+
   return (
     <>
-       {/* Back Button */}
+      {/* Back Button */}
       <ArrowLeft
         onClick={() => setStep(1)}
         className="absolute left-[5%] top-[5%] cursor-pointer"
@@ -24,12 +73,12 @@ function CheckOtpForm({setStep}) {
         {/* input section */}
         <div className="w-full text-center flex flex-col gap-5.5 ">
           <label htmlFor="phone" className="font-light text-right">
-            کد تایید به شماره 09224526847 ارسال شد
+            کد تایید به شماره {phone["mobile"]} ارسال شد
           </label>
           <OtpInput
             value={otp}
             onChange={setOtp}
-            numInputs={5}
+            numInputs={6}
             renderInput={(props) => (
               <input
                 {...props}
@@ -43,11 +92,24 @@ function CheckOtpForm({setStep}) {
               justifyContent: "center",
             }}
           />
-          <p>تا ارسال مجدد کد</p>
+          {isRunning ? (
+            <p>
+              {" "}
+              <span>{formattedTime}</span> تا ارسال مجدد کد{" "}
+            </p>
+          ) : (
+            <button
+              onClick={resendCodeHandler}
+              className=" w-fit self-center cursor-pointer hover:text-[#28A745] transition-colors duration-200"
+            >
+              {" "}
+              ارسال مجدد کد{" "}
+            </button>
+          )}
         </div>
         {/* submit button */}
         <button
-          onClick={onOtpSubmit}
+          onClick={CheckOtpHandler}
           className="w-full font-VazirFd font-medium text-[18px] text-white bg-[#28A745] h-[54px] leading-[54px] text-center border-[#00000040] border-[1px] border-solid rounded-[6px] cursor-pointer hover:bg-[#24943d] transition-colors duration-200 "
         >
           تأیید

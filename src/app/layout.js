@@ -1,6 +1,8 @@
 import { VazirFd, IranianSans, YekanBakh, Vazirmatn } from "src/utils/fonts";
 import "./globals.css";
 import Layout from "src/components/layout/Layout";
+import QueryProvider from "src/providers/QueryProvider";
+import { ToastContainer } from "react-toastify";
 
 export const metadata = {
   title: "Torino",
@@ -17,9 +19,18 @@ export default function RootLayout({ children }) {
       className={`${VazirFd.variable} ${IranianSans.variable} ${YekanBakh.variable} ${Vazirmatn.variable} `}
     >
       <body>
-        <Layout>{children}</Layout>
+        <QueryProvider>
+          <Layout>{children}</Layout>
+          <ToastContainer
+            position="top-right"
+            autoClose={1500}
+            theme="dark"
+            toastClassName="epic-toast"
+            bodyClassName="epic-toast-body"
+            progressClassName="epic-toast-progress"
+          />
+        </QueryProvider>
       </body>
     </html>
   );
 }
-
