@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 function SendOtpForm({ closeHandler, setStep, setPhone, phone }) {
   const schema = phoneSchema();
-  const { mutate } = UseSendOtp();
+  const { mutate , isPending } = UseSendOtp();
   const {
     register,
     handleSubmit,
@@ -17,6 +17,7 @@ function SendOtpForm({ closeHandler, setStep, setPhone, phone }) {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
+    if(isPending) return
     mutate(data, {
       onSuccess: (res) => {
         toast.success(res?.message);

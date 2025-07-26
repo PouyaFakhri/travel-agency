@@ -8,20 +8,6 @@ const api = axios.create({
   },
 });
 
-let isRefreshing = false;
-let failedQueue = [];
-
-const processQueue = (error, token = null) => {
-  failedQueue.forEach((prom) => {
-    if (error) {
-      prom.reject(error);
-    } else {
-      prom.resolve(token);
-    }
-  });
-  failedQueue = [];
-};
-
 api.interceptors.request.use(
   (config) => {
     const accessToken = getCookie("accessToken");
@@ -37,54 +23,43 @@ api.interceptors.response.use(
   (response) => response.data,
   async (error) => {
     const originalRequest = error.config;
-
+    if (
+      !error.response &&
+      (error.message.includes("Network Error") ||
+        error.message.includes("ERR_NETWORK"))
+    ) {
+      return Promise.reject(new Error("خطا در ارتباط با سرور"));
+    }
+    if (error.response?.status === 500) {
+      return Promise.reject(new Error("خطا در ارتباط با سرور"));
+    }
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-
-      if (isRefreshing) {
-        return new Promise((resolve, reject) => {
-          failedQueue.push({ resolve, reject });
-        })
-          .then((token) => {
-            originalRequest.headers.Authorization = `Bearer ${token}`;
-            return api(originalRequest);
-          })
-          .catch((err) => Promise.reject(err));
-      }
-
-      isRefreshing = true;
-
-      try {
-        const refreshToken = getCookie("refreshToken");
-        if (!refreshToken) {
-          throw new Error("No refresh token available");
-        }
-
-        const res = await axios.post(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/auth/refresh-token`,
-          { refreshToken },
-          { headers: { "Content-Type": "application/json" } }
-        );
-
-        const newAccessToken = res.data.accessToken;
-        setCookie("accessToken", newAccessToken, 30);
-
-        processQueue(null, newAccessToken);
-        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+      const res = await getNewToken();
+      if (res?.response?.status === 201) {
+        setCookie("accessToken", res?.response?.data.accessToken, 30);
+        setCookie("refreshToken", res?.response?.data.refreshToken, 360);
         return api(originalRequest);
-      } catch (err) {
-        processQueue(err, null);
-        removeCookie("accessToken");
-        removeCookie("refreshToken");
-        // window.location.href = '/login';
-        return Promise.reject(err);
-      } finally {
-        isRefreshing = false;
+      } else {
+        setCookie("accessToken", "", 0);
+        setCookie("refreshToken", "", 0);
       }
     }
-
     return Promise.reject(error);
   }
 );
 
 export default api;
+
+const getNewToken = async () => {
+  const refreshToken = getCookie("refreshToken");
+  if (refreshToken) {
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}auth/refresh-token`,
+      { refreshToken }
+    );
+    return res;
+  } else {
+    return;
+  }
+};

@@ -12,9 +12,10 @@ import { setCookie } from "src/utils/cookies";
 function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
   const [otp, setOtp] = useState("");
   const { formattedTime, reset, isRunning } = UseCountdownTimer(120);
-  const { mutate: sendOtpMutate } = UseSendOtp();
-  const { mutate: checkOtpMutate } = UseCheckOtp();
+  const { mutate: sendOtpMutate , isPending:sendOtpIsPending } = UseSendOtp();
+  const { mutate: checkOtpMutate  , isPending:checkOtpIsPending } = UseCheckOtp();
   const resendCodeHandler = () => {
+    if(sendOtpIsPending) return
     sendOtpMutate(phone, {
       onSuccess: (res) => {
         toast.success(res?.message);
@@ -33,7 +34,7 @@ function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
       toast.error("کد تأیید باید ۶ رقم باشد");
       return;
     }
-
+    if(checkOtpIsPending) return
     checkOtpMutate(
       {
         mobile: phone["mobile"],
