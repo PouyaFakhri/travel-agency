@@ -40,7 +40,7 @@ export default async function Header() {
     }
   }
   return (
-    <header className="w-full flex items-center justify-between font-YekanBakh py-3.5 relative">
+    <header className="w-full max-w-[1440px] flex items-center justify-between font-YekanBakh py-3.5 relative">
       {/* لوگو و منوی دسکتاپ */}
       <div className="hidden sm:flex items-center sm:gap-5 lg:gap-10 xl:gap-20">
         <Link href="/">

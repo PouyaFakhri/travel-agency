@@ -23,6 +23,7 @@ const destinationCities = [
   ["مادرید", "3"],
   ["هولیر", "6"],
   ["مازندران", "7"],
+  ["سنندج", "2"],
   ["آفرود سنتر", "8"],
   ["ایتالیا", "9"],
 ].map(([label, value]) => ({ label, value }));
@@ -64,8 +65,8 @@ export default function SearchForm() {
     reset,
   } = useForm({
     defaultValues: {
-      origin: searchParams.get("origin") || "",
-      destination: searchParams.get("destination") || "",
+      originId: searchParams.get("originId") || "",
+      destinationId: searchParams.get("destinationId") || "",
       date: {
         from: searchParams.get("startDate")
           ? new DateObject(searchParams.get("startDate"))
@@ -84,8 +85,8 @@ export default function SearchForm() {
   const today = new DateObject({ calendar: persian, locale: CustomPersianFa });
 
   useEffect(() => {
-    const origin = searchParams.get("origin") || "";
-    const destination = searchParams.get("destination") || "";
+    const originId = searchParams.get("originId") || "";
+    const destinationId = searchParams.get("destinationId") || "";
     const date = {
       from: searchParams.get("startDate")
         ? new DateObject(searchParams.get("startDate"))
@@ -95,8 +96,8 @@ export default function SearchForm() {
         : null,
     };
     reset({
-      origin,
-      destination,
+      originId,
+      destinationId,
       date,
     });
     const handleClickOutside = (event) => {
@@ -115,8 +116,8 @@ export default function SearchForm() {
 
   const onSubmit = (data) => {
     const flatData = {
-      destination: data.destination,
-      origin: data.origin,
+      destinationId: data.destinationId,
+      originId: data.originId,
       startDate: data.date?.from ? convertDateObjectToISO(data.date.from) : "",
       endDate: data.date?.to ? convertDateObjectToISO(data.date.to) : "",
     };
@@ -128,8 +129,8 @@ export default function SearchForm() {
     ).toString();
     router.push(`/?${queryString}`);
     reset({
-      origin: "",
-      destination: "",
+      originId: "",
+      destinationId: "",
       date: { from: null, to: null },
     });
   };
@@ -142,7 +143,7 @@ export default function SearchForm() {
     >
       <div className="flex w-full gap-2 sm:w-[40%] lg:w-[45%] sm:h-full">
         <Controller
-          name="origin"
+          name="originId"
           control={control}
           render={({ field: { onChange, value } }) => (
             <div className="relative w-full sm:w-1/2 sm:h-full" ref={originRef}>
@@ -151,17 +152,17 @@ export default function SearchForm() {
                   type="button"
                   onClick={() => setIsOpenOrigin(!isOpenOrigin)}
                   className={`w-full h-[47px] p-3 sm:!h-full border rounded-lg sm:border-0 sm:rounded-0 flex justify-between items-center bg-white transition-colors duration-200 ${
-                    errors.origin ? "border-red-500" : "border-gray-300"
+                    errors.originId ? "border-red-500" : "border-gray-300"
                   }`}
                 >
-                  <span className="flex items-center gap-2 font-IranianSans text-[#00000080]">
+                  <span className="flex items-center gap-2 font-IranianSans text-[#00000080] cursor-pointer">
                     <Location className="w-[18px] h-[18px]" />
                     {originCities.find((item) => item.value === value)?.label ||
                       "مبدا"}
                   </span>
                 </button>
                 <p className="text-red-500 text-[10px] h-[23px] font-IranianSans pt-2 sm:absolute sm:top-[100%] md:text-[11px] lg:text-[12px] ">
-                  {errors.origin?.message || ""}
+                  {errors.originId?.message || ""}
                 </p>
               </div>
               {isOpenOrigin && (
@@ -191,7 +192,7 @@ export default function SearchForm() {
         />
 
         <Controller
-          name="destination"
+          name="destinationId"
           control={control}
           render={({ field: { onChange, value } }) => (
             <div className="relative w-full sm:w-1/2 sm:h-full " ref={destRef}>
@@ -200,19 +201,19 @@ export default function SearchForm() {
                   type="button"
                   onClick={() => setIsOpenDest(!isOpenDest)}
                   className={`w-full h-[47px] p-3 border rounded-lg sm:border-0 sm:!h-full sm:border-r-1 sm:border-l-1 sm:rounded-none flex justify-between items-center bg-white font-IranianSans transition-colors duration-200 ${
-                    errors.destination
+                    errors.destinationId
                       ? "border-red-500 sm:border-[#00000033]"
                       : "border-gray-300"
                   }`}
                 >
-                  <span className="flex items-center gap-2 font-IranianSans text-[#00000080] ">
+                  <span className="flex items-center gap-2 font-IranianSans text-[#00000080] cursor-pointer ">
                     <Destination className="w-[18px] h-[18px]" />
                     {destinationCities.find((item) => item.value === value)
                       ?.label || "مقصد"}
                   </span>
                 </button>
                 <p className="text-red-500 text-[10px] h-[23px] pt-2 font-IranianSans sm:absolute sm:top-[100%]">
-                  {errors.destination?.message || ""}
+                  {errors.destinationId?.message || ""}
                 </p>
               </div>
               {isOpenDest && (
@@ -314,7 +315,7 @@ export default function SearchForm() {
 
       <button
         type="submit"
-        className="bg-[#28A745] !font-YekanBakh text-white sm:h-[82%] text-[20px] font-normal p-2 rounded-[16px] w-full sm:w-1/5 lg:w-1/4 sm:max-w-[190px] mb-4 sm:mb-0 hover:bg-green-700 transition-colors duration-200 sm:text-[21px] md:text-[22px] lg:text-[24px] "
+        className="bg-[#28A745] !font-YekanBakh cursor-pointer text-white sm:h-[82%] text-[20px] font-normal p-2 rounded-[16px] w-full sm:w-1/5 lg:w-1/4 sm:max-w-[190px] mb-4 sm:mb-0 hover:bg-green-700 transition-colors duration-200 sm:text-[21px] md:text-[22px] lg:text-[24px] "
       >
         جستجو
       </button>

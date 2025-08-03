@@ -23,11 +23,15 @@ export default function RootLayout({ children }) {
           <Layout>{children}</Layout>
           <ToastContainer
             position="top-right"
-            autoClose={1500}
+            autoClose={3000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnHover
+            draggable
             theme="dark"
-            toastClassName="epic-toast"
-            bodyClassName="epic-toast-body"
-            progressClassName="epic-toast-progress"
+            toastClassName="super-toast"
+            bodyClassName="super-toast-body"
+            progressClassName="super-toast-progress"
           />
         </QueryProvider>
       </body>

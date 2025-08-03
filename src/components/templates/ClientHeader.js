@@ -60,7 +60,7 @@ function ClientHeader({ isAuthenticated, phoneNumber }) {
               {phone["mobile"] || phoneNumber}
             </span>
             <ArrowDown
-              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-transform duration-200 ${
+              className={`w-4 h-4 stroke-[#28A745] sm:w-5 sm:h-5 md:w-6 md:h-6 transition-transform duration-200 ${
                 isDropdownOpen ? "rotate-180" : "rotate-0"
               }`}
             />
@@ -84,7 +84,7 @@ function ClientHeader({ isAuthenticated, phoneNumber }) {
                 <Person className="w-5 h-5  fill-white stroke-[#282828] stroke-[1.5px]" />
                 <p> اطلاعات حساب کاربری</p>
               </Link>
-              <div class="border-t border-gray-300 w-full sm:w-[90%] md:w-[80%] mx-auto"></div>
+              <div className="border-t border-gray-300 w-full sm:w-[90%] md:w-[80%] mx-auto"></div>
               <Link
                 href="/"
                 className="flex items-center justify-start p-2 gap-1.5 text-[12px] sm:text-sm h-[35px] leading-[35px] sm:h-[54px] sm:leading-[54px] text-[#D40000] hover:bg-[#28A745]/10"

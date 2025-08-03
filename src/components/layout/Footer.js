@@ -49,7 +49,7 @@ const footerLogos = [
 
 function Footer() {
   return (
-    <footer className="w-full flex flex-col gap-2.5 font-YekanBakh">
+    <footer className="w-full max-w-[1440px] flex flex-col gap-2.5 font-YekanBakh">
       {/* Top separator line (dashed style on mobile) */}
       <div className="w-full h-px bg-[repeating-linear-gradient(to_right,black_0,black_10px,transparent_10px,transparent_20px)] xs:bg-none xs:border-t xs:border-[#00000033] xs:h-0 mb-1.5"></div>
       <div className=" w-full flex flex-col xs:flex-row gap-5.5 xs:gap-0 ">
