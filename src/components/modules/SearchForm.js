@@ -248,7 +248,7 @@ export default function SearchForm() {
         control={control}
         render={({ field: { onChange, value } }) => (
           <div className="relative w-full sm:w-[45%] lg:w-[30%] sm:h-full flex mb-6 sm:mb-0 ">
-            <div className=" w-full min-h-[61.4] flex sm:items-center sm:justify-start !sm:h-full sm:flex-row overflow-x-hidden">
+            <div className=" w-full min-h-[51.4] !h-full flex sm:items-center sm:justify-start !sm:h-full sm:flex-row overflow-x-hidden">
               <DatePicker
                 value={
                   value?.from && value?.to
@@ -292,13 +292,13 @@ export default function SearchForm() {
                 calendarPosition="bottom"
                 render={(value, openCalendar) => (
                   <div
-                    className={`!w-full flex h-[47px] !sm:h-full sm:border-none pr-3 border rounded-lg 
+                    className={`!w-full flex items-center justify-center h-[47px] !sm:h-full sm:border-none pr-3 border rounded-lg 
                       !font-IranianSans !text-[#00000080] text-normal bg-white cursor-pointer transition-colors duration-200 ${
                         errors.date ? "border-red-500" : "border-gray-300"
                       }`}
                     onClick={openCalendar}
                   >
-                    <span className="flex !w-full items-center justify-start gap-2 !font-IranianSans text-[#00000080]">
+                    <span className="flex h-full !w-full items-center justify-start gap-2 !font-IranianSans text-[#00000080]">
                       <Calender />
                       {value || "تاریخ"}
                     </span>

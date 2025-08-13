@@ -109,7 +109,7 @@ function Footer() {
               className="text-xs text-[#000000] xs:text-[12px] sm:text-[15px]"
             >
               <span>تلفن پشتیبانی: </span>
-              <span className="font-VazirFd">8574-021</span>
+              <span className="font-VazirFd">1840-021</span>
             </a>
           </div>
         </div>

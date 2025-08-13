@@ -40,8 +40,7 @@ export default async function Header() {
     }
   }
   return (
-    <header className="w-full max-w-[1440px] flex items-center justify-between font-YekanBakh py-3.5 relative">
-      {/* لوگو و منوی دسکتاپ */}
+    <header className="w-full fixed max-w-screen flex items-center justify-between font-YekanBakh py-3.5 px-[7.5%] [box-shadow:0px_1px_4px_0px_#00000040] border-b-[#10411B] bg-white z-2000 ;">
       <div className="hidden sm:flex items-center sm:gap-5 lg:gap-10 xl:gap-20">
         <Link href="/">
           <Image
@@ -50,7 +49,7 @@ export default async function Header() {
             height={44}
             alt="Torino Logo"
             priority
-            className="sm:w-[100px] md:w-[146px]"
+            className="sm:w-[90px] md:w-[146px]"
           />
         </Link>
         <Suspense fallback={<NavFallback />}>

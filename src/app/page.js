@@ -15,14 +15,14 @@ async function Home({ searchParams }) {
   console.log(data)
 
   return (
-    <div className="w-[100vw] max-w-[1440px] overflow-hidden flex-1">
+    <div className="w-[100vw] overflow-hidden flex-1 mt-[48px] sm:mt-[60px] md:mt-[73px]">
       <Image
         src="/Images/Banner.png"
         width={1440}
         height={350}
         alt="بنر صفحه اصلی تورینو"
         priority
-        className="w-[100vw] h-auto"
+        className="w-[100vw] h-auto min-h-[119px]"
       />
       <h2 className="font-YekanBakh font-semibold text-[#28A745] sm:text-xl md:text-[24px] lg:text-[28px] text-center py-5 [word-spacing:2px] sm:[word-spacing:4px] md:[word-spacing:6px] lg:[word-spacing:8px] xl:[word-spacing:12px]">
         تورینو

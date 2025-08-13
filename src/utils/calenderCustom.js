@@ -1,3 +1,5 @@
+import persian_fa from 'react-date-object/locales/persian_fa';
+
 export const CustomPersianFa = {
   name: "persian_fa_custom",
   months: [
@@ -25,4 +27,9 @@ export const CustomPersianFa = {
   ],
   digits: ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"],
   meridiem: ["قبل از ظهر", "بعد از ظهر"],
+};
+
+export const customPersianLocale = {
+  ...persian_fa,
+  digits: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], // اعداد انگلیسی
 };

@@ -6,6 +6,7 @@
   --font-YekanBakh: var(--font-yekanbakh);
   --font-IranianSans: var(--font-iraniansans);
   --breakpoint-xs: 27rem;
+  --breakpoint-mp: 56rem;
   --breakpoint-xxs: 23.4rem;
   --shadow-modal: "0px 4px 4px 0px #00000040";
 }

@@ -25,9 +25,9 @@ function MoreInfo() {
         </div>
         <Link
           href="/contact"
-          className="bg-[#10411B] py-2 px-3 sm:px-3 md:px-6 lg:px-9  xxs:px-4 rounded-[9px] cursor-pointer text-white text-[14px] font-medium md:text-[16px]"
+          className="bg-[#10411B] py-2 px-3 sm:px-3 md:px-6 lg:px-9  xxs:px-4 rounded-[9px] cursor-pointer text-white text-[14px] font-medium md:text-[16px] hover:bg-[#28A745] transition-colors duration-200"
         >
-          اطلاعات بیشتر{" "}
+          اطلاعات بیشتر
         </Link>
       </div>
     </div>
