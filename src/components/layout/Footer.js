@@ -6,18 +6,18 @@ const footerSections = [
   {
     title: "تورینو",
     links: [
-      { label: "درباره ما", href: "/about" },
+      { label: "درباره ما", href: "/aboutus" },
       { label: "تماس با ما", href: "/contact" },
-      { label: "چرا تورینو", href: "/why-torino" },
-      { label: "بیمه مسافرتی", href: "/travel-insurance" },
+      { label: "چرا تورینو", href: "/whytorino" },
+      { label: "بیمه مسافرتی", href: "/travelinsurance" },
     ],
   },
   {
     title: "خدمات مشتریان",
     links: [
       { label: "پشتیبانی آنلاین", href: "/support" },
-      { label: "راهنمای خرید", href: "/buy-guide" },
-      { label: "راهنمای استرداد", href: "/refund-guide" },
+      { label: "راهنمای خرید", href: "/buyguide" },
+      { label: "راهنمای استرداد", href: "/refundguide" },
       { label: "پرسش و پاسخ", href: "/faq" },
     ],
   },

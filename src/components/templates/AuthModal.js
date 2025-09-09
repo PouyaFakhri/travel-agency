@@ -7,8 +7,6 @@ import CheckOtpForm from "../modules/CheckOtpForm";
 function AuthModal({ modalState }) {
   const { isAuthModalOn, setIsAuthModalOn, phone, setPhone , setIsLogin } = modalState;
   const [step, setStep] = useState(1);
-
-  // تنظیم با انیمیشن موبایل
   const closeHandler = () => {
     setTimeout(() => {
       setIsAuthModalOn(false);

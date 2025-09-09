@@ -2,6 +2,12 @@ import TourCard from "src/components/templates/TourCard";
 import { Suspense } from "react";
 import TourCardFallback from "src/constants/TourCardFallback";
 
+export const metadata = {
+  title: "جزئیات تور | تورینو",
+  description:
+    "مشاهده اطلاعات کامل تور، قیمت‌ها، خدمات و امکان رزرو تور از وبسایت تورینو.",
+};
+
 async function Tours({ params }) {
   const param = await params;
   const res = await fetch(
@@ -18,4 +24,3 @@ async function Tours({ params }) {
 }
 
 export default Tours;
-

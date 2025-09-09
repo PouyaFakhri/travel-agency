@@ -25,12 +25,33 @@ export const UseCheckOtp = () => {
 export const UseAddToBasket = () => {
   const queryClient = useQueryClient();
   const AddToBasket = (tourId) => {
-    return api.post(`/basket/${tourId}`);
+    return api.put(`/basket/${tourId}`);
   };
   return useMutation({
     mutationFn: AddToBasket,
     mutationKey: ["AddToBasket"],
-    onSuccess : queryClient.invalidateQueries(["GetBasket"])
-  })
-  
+    onSuccess: () => {
+      queryClient.invalidateQueries(["GetBasket"]);
+    },
+  });
+};
+
+export const UseCheckOut = () => {
+  const CheckOut = (data) => {
+    return api.post("/order", data);
+  };
+  return useMutation({
+    mutationFn: CheckOut,
+    mutationKey: ["CheckOut"],
+  });
+};
+
+export const UseEditUserProfile = () => {
+  const EditUserProfile = (data) => {
+    return api.put("/user/profile", data);
+  };
+  return useMutation({
+    mutationFn: EditUserProfile,
+    mutationKey: ["EditUserProfile"],
+  });
 };

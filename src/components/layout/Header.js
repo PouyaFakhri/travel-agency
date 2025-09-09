@@ -8,8 +8,8 @@ import { jwtDecode } from "jwt-decode";
 
 const navLinks = [
   { href: "/", label: "صفحه ی اصلی" },
-  { href: "/services", label: "خدمات گردشگری" },
-  { href: "/about", label: "درباره ی ما" },
+  { href: "/whytorino", label: "چرا تورینو" },
+  { href: "/aboutus", label: "درباره ی ما" },
   { href: "/contact", label: "تماس با ما" },
 ];
 

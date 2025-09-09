@@ -11,11 +11,20 @@ import TourPerson from "../icons/TourPerson";
 import Zarfiat from "../icons/Zarfiat";
 import { UseShamsiDater } from "src/hooks/UseShamsiDater";
 import { Cities } from "src/constants/Cities";
-
+import { UseAddToBasket } from "src/services/mutations";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 function TourCard({ tourData }) {
+  const router = useRouter();
+  const { mutate } = UseAddToBasket();
   const clickHandler = () => {
-    console.log("done");
+    mutate(tourData.id , {
+      onSuccess: () => {
+        toast.success("با موفقیت به سبد خرید اضافه شد");
+        router.push("/basket");
+      },
+    });
   };
   return (
     <div className="w-screen sm:bg-[#F3F3F3] bg-white pt-0 sm:pt-2 pb-10 xs:pb-6 ">

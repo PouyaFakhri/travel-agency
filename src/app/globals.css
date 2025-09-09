@@ -5,6 +5,8 @@
   --font-VazirFd: var(--font-vazirfd);
   --font-YekanBakh: var(--font-yekanbakh);
   --font-IranianSans: var(--font-iraniansans);
+  --breakpoint-xxxs: 21rem;
+  --breakpoint-xxs: 23.5rem;
   --breakpoint-xs: 27rem;
   --breakpoint-mp: 56rem;
   --breakpoint-xxs: 23.4rem;
@@ -146,6 +148,13 @@ div[class*="overlay"] {
   width: 100%;
 }
 
+.myDatePicker.rmdp-wrapper {
+  width: 100% !important;
+  position: absolute !important;
+  top: -5px !important;
+  right: 0px !important;
+}
+
 .rmdp-container {
   width: 100%;
 }
@@ -210,8 +219,9 @@ div[class*="overlay"] {
     padding: 12px 16px;
     font-size: 14px;
     border-radius: 12px;
-    margin-left: auto;
     margin-top: 5px;
+    margin-left: auto;
+    margin-right: -10px;
   }
 
   .super-toast-body {
@@ -272,11 +282,24 @@ div[class*="overlay"] {
     width: 230px !important;
     top: 16px !important;
   }
+
+  .super-toast {
+    max-width: 450px;
+    min-width: 330px !important;
+    padding: 14px 18px;
+    font-size: 15px;
+    border-radius: 14px;
+    margin-left: auto;
+    margin-top: 5px;
+  }
 }
 @media screen and (min-width: 1024px) {
   .rmdp-wrapper {
     width: 268px !important;
     right: 0px !important;
+  }
+  .super-toast {
+    min-width: 370px !important;
   }
 }
 
@@ -309,7 +332,7 @@ div[class*="overlay"] {
 .swiper-slide-next {
   transform: translateX(-20%) scale(0.9) translateZ(0);
   z-index: 2;
-  clip-path: inset(0 90% 0 0); /* نمایش حدود 10% از سمت چپ */
+  clip-path: inset(0 90% 0 0);
 }
 
 .slide-image {

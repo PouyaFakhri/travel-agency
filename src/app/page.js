@@ -4,15 +4,20 @@ import SearchForm from "src/components/modules/SearchForm";
 import Slider from "src/components/modules/Slider";
 import ToursList from "src/components/templates/ToursList";
 
+export const metadata = {
+  title: "تورینو | برگزار کننده بهترین تورهای داخلی و خارجی",
+  description:
+    "تورینو ارائه‌دهنده بهترین تورهای داخلی و خارجی با پشتیبانی ۲۴/۷، بیمه مسافرتی کامل، و تخفیف‌های ویژه. برای سفر رویایی‌تان با تورینو همراه شوید.",
+  keywords:
+    "تورینو, تور مسافرتی, تور داخلی, تور خارجی, آژانس گردشگری, بلیط سفر, تور اروپا, تور ایران",
+};
 
 async function Home({ searchParams }) {
-  const searchParam = await searchParams;
-  const query = new URLSearchParams(searchParam).toString();
+  const query = new URLSearchParams(await searchParams).toString();
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/tour?${query}`, {
     cache: "no-store",
   });
-  const data = await res.json()
-  console.log(data)
+  const data = await res.json();
 
   return (
     <div className="w-[100vw] overflow-hidden flex-1 mt-[48px] sm:mt-[60px] md:mt-[73px]">
@@ -31,7 +36,7 @@ async function Home({ searchParams }) {
         </span>
       </h2>
       <SearchForm />
-      <ToursList props={{data , query}} />
+      <ToursList props={{ data, query }} />
       <MoreInfo />
       <Slider />
     </div>

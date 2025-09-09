@@ -22,6 +22,7 @@ function Card({ item }) {
       <div className="flex justify-between items-center px-2 py-1 border-t border-[#0000001F]">
         <Link
           href={`/tours/${item?.id}`}
+          prefetch={true}
           className="bg-[#28A745] hover:bg-green-700 transition-colors duration-200 text-white text-[15px] rounded-sm px-6 py-2 leading-none cursor-pointer"
         >
           رزرو

@@ -43,8 +43,8 @@ function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
       {
         onSuccess: (res) => {
           toast.success(res?.message || " با موفقیت وارد شدید ");
-          setCookie("accessToken", res?.accessToken, 7);
-          setCookie("refreshToken", res?.refreshToken, 30);
+          setCookie("accessToken", res?.accessToken, 30);
+          setCookie("refreshToken", res?.refreshToken, 10080);
           setIsLogin(true);
           setIsAuthModalOn(false);
         },
