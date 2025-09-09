@@ -1,0 +1,30 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+
+function ClientNavLink({ navLinks }) {
+  const pathName = usePathname();
+  return (
+    <nav className="flex min-h-[32px] items-center sm:gap-2 md:gap-[10px] lg:gap-10 xl:gap-16 sm:text-[12px] md:text-[13px]">
+      {navLinks.map(({ href, label }) => {
+        const isActive = pathName === href || pathName.startsWith(href + "/");
+        return (
+          <Link
+            key={href}
+            href={href}
+            className={`relative pb-1 pt-1 font-medium transition-colors duration-200 ${
+              isActive
+                ? "text-[#28A745] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#28A745]"
+                : "text-[#282828] hover:text-[#28A745]"
+            }`}
+          >
+            {label}
+          </Link>
+        );
+      })}
+    </nav>
+  );
+}
+
+export default ClientNavLink;

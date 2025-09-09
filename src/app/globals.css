@@ -1,16 +1,35 @@
 @import "tailwindcss";
 
+@theme {
+  --font-vazirmatn: var(--font-vazirmatn);
+  --font-VazirFd: var(--font-vazirfd);
+  --font-YekanBakh: var(--font-yekanbakh);
+  --font-IranianSans: var(--font-iraniansans);
+  --breakpoint-xxxs: 21rem;
+  --breakpoint-xxs: 23.5rem;
+  --breakpoint-xs: 27rem;
+  --breakpoint-mp: 56rem;
+  --breakpoint-xxs: 23.4rem;
+  --shadow-modal: "0px 4px 4px 0px #00000040";
+}
+
 body {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
   max-width: 1440px;
-  padding: 0;
-  margin: 0;
-  font-family: var(--font-vazirmatn) , sans-serif;
+  min-height: 100vh;
+  margin: 0 auto;
+  font-family: var(--font-vazirmatn), sans-serif;
+  overflow-x: hidden;
+  background-color: #fff;
+  box-sizing: border-box;
 }
 
 *,
 *::after,
 * ::before {
-  box-sizing: border-box;
+  box-sizing: inherit;
 }
 
 input,
@@ -23,9 +42,337 @@ a {
   cursor: pointer;
 }
 
-@theme inline {
-  --font-vazirmatn: var(--font-vazirmatn);
-  --font-VazirFd: var(--font-vazirfd);
-  --font-YekanBakh: var(--font-yekanbakh);
-  --font-IranianSans: var(--font-iraniansans);
+.super-toast {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  gap: 12px;
+  width: 100%;
+  max-width: 360px;
+  min-width: 320px !important;
+  min-height: 64px;
+  padding: 16px 20px 16px 20px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  color: #1a1a1a;
+  font-family: "Vazirmatin", "Segoe UI", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  overflow: hidden;
+}
+
+.super-toast-body {
+  flex: 1;
+  text-align: center;
+  line-height: 1.6;
+  padding: 0 16px;
+}
+
+.Toastify__close-button {
+  position: absolute !important;
+  left: 12px !important;
+  right: auto !important;
+  top: 12px;
+  width: 36px;
+  height: 36px;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+  font-weight: bold;
+  z-index: 1000;
+}
+
+.Toastify__close-button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.Toastify__toast--success .Toastify__close-button {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
+}
+
+.Toastify__toast--error .Toastify__close-button {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.4);
+}
+
+.super-toast-progress {
+  background: linear-gradient(90deg, #4facfe, #00f2fe, #43e97b, #38f9d7);
+  height: 4px;
+  border-radius: 4px;
+}
+
+.Toastify__toast--success {
+  background: rgba(255, 255, 255, 0.85);
+  color: #065f46;
+}
+
+.Toastify__toast--error {
+  background: rgba(255, 255, 255, 0.9);
+  color: #7f1d1d;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: none;
+}
+
+div[class*="overlay"] {
+  background: transparent !important;
+}
+
+.rmdp-container * {
+  font-family: "VazirFd", sans-serif !important;
+}
+
+.rmdp-container div {
+  transition: none !important;
+  top: 0;
+  right: 0;
+  width: 100%;
+}
+
+.myDatePicker.rmdp-wrapper {
+  width: 100% !important;
+  position: absolute !important;
+  top: -5px !important;
+  right: 0px !important;
+}
+
+.rmdp-container {
+  width: 100%;
+}
+
+.rmdp-wrapper {
+  width: full;
+  border-radius: 12px !important;
+  position: absolute;
+}
+
+.rmdp-header {
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+}
+
+.rmdp-header-values span {
+  color: #28a745 !important;
+  margin: 0 2px;
+}
+
+.rmdp-range.start,
+.rmdp-range.end {
+  background-color: #28a745 !important;
+  color: white !important;
+  border-radius: 12% !important;
+}
+
+.rmdp-week-day {
+  color: #28a745 !important;
+}
+
+.rmdp-range {
+  background-color: #86efac !important;
+  color: #1f2937 !important;
+}
+
+.ep-arrow {
+  display: none !important;
+}
+
+.rmdp-panel-body li {
+  background-color: #16a34a !important;
+  color: white !important;
+}
+
+.rmdp-day {
+  color: #616161 !important;
+}
+
+.rmdp-day span {
+  border-radius: 12% !important;
+  -webkit-border-radius: 12% !important;
+  -moz-border-radius: 12% !important;
+  -ms-border-radius: 12% !important;
+  -o-border-radius: 12% !important;
+}
+
+@media (max-width: 576px) {
+  .super-toast {
+    max-width: 300px;
+    min-width: 280px !important;
+    padding: 12px 16px;
+    font-size: 14px;
+    border-radius: 12px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: -10px;
+  }
+
+  .super-toast-body {
+    padding: 0 12px;
+    line-height: 1.4;
+  }
+
+  .Toastify__close-button {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    left: 8px !important;
+    top: 8px;
+  }
+
+  .super-toast-progress {
+    height: 3px;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .super-toast {
+    max-width: 340px;
+    min-width: 300px !important;
+    padding: 14px 18px;
+    font-size: 15px;
+    border-radius: 14px;
+    margin-left: auto;
+    margin-top: 5px;
+  }
+
+  .super-toast-body {
+    padding: 0 14px;
+    line-height: 1.5;
+  }
+
+  .Toastify__close-button {
+    width: 34px;
+    height: 34px;
+    font-size: 17px;
+    left: 10px !important;
+    top: 10px;
+  }
+
+  .super-toast-progress {
+    height: 3.5px;
+  }
+}
+@media screen and (min-width: 640px) {
+  .rmdp-wrapper {
+    width: 200px !important;
+    top: 8px !important;
+    right: 20px !important;
+  }
+}
+@media screen and (min-width: 768px) {
+  .rmdp-wrapper {
+    width: 230px !important;
+    top: 16px !important;
+  }
+
+  .super-toast {
+    max-width: 450px;
+    min-width: 330px !important;
+    padding: 14px 18px;
+    font-size: 15px;
+    border-radius: 14px;
+    margin-left: auto;
+    margin-top: 5px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .rmdp-wrapper {
+    width: 268px !important;
+    right: 0px !important;
+  }
+  .super-toast {
+    min-width: 370px !important;
+  }
+}
+
+.slider-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+.swiper {
+  overflow: visible !important;
+}
+
+.swiper-slide {
+  opacity: 0.7;
+  border-radius: 20px;
+  overflow: hidden;
+  transform: scale(0.9) translateZ(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.swiper-slide-active {
+  opacity: 1;
+  transform: scale(1) translateZ(0);
+  z-index: 3;
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+  transform: translateX(-20%) scale(0.9) translateZ(0);
+  z-index: 2;
+  clip-path: inset(0 90% 0 0);
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #333;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-button-prev {
+  left: 10px;
+}
+
+.swiper-button-next {
+  right: 10px;
+}
+
+.swiper-pagination {
+  bottom: 10px;
+}
+
+.swiper-pagination-bullet {
+  background: #ccc;
+  width: 10px;
+  height: 10px;
+}
+
+.swiper-pagination-bullet-active {
+  background: #333;
 }
