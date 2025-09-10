@@ -28,7 +28,7 @@ function TourCard({ tourData }) {
   };
   return (
     <div className="w-screen sm:bg-[#F3F3F3] bg-white pt-0 sm:pt-2 pb-10 xs:pb-6 ">
-      <div className="w-[85%] relative mx-auto mt-[65px] sm:mt-[80px] md:mt-[90px] flex flex-col items-center gap-2 sm:border-[#00000033] sm:border-[1px] bg-[#FFFFFF] sm:rounded-[10px] p-0 pb-12 sm:p-5 mp:pb-0">
+      <div className="w-[85%] relative mx-auto mt-[80px] md:mt-[90px] flex flex-col items-center gap-2 sm:border-[#00000033] sm:border-[1px] bg-[#FFFFFF] sm:rounded-[10px] p-0 pb-12 sm:p-5 mp:pb-0">
         <div className="flex w-full flex-col xs:flex-row gap-4 ">
           <Image
             src={`/Images/${tourData.destination.name}.png`}
@@ -130,7 +130,7 @@ function TourCard({ tourData }) {
               {tourData.availableSeats}
             </p>
           </div>
-          <div className="flex flex-col gap-1 min-w-[60px] flex-1">
+          <div className="flex flex-col gap-1 min-w-[90px] flex-1">
             <div className="flex gap-1 justify-center">
               <Bime className="w-4 h-4 xs:w-[17px] xs:h-[17px] sm:w-[18px] sm:h-[18px] md:w-[19px] md:h-[19px] lg:w-5 lg:h-5" />
               <p className="font-normal text-[15px] text-[#444444] text-center line-clamp-1">
