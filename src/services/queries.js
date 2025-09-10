@@ -1,3 +1,4 @@
+
 import { useQuery } from "@tanstack/react-query";
 import api from "src/config/api";
 
@@ -8,6 +9,7 @@ export const UseGetBasket = () => {
   return useQuery({
     queryFn: GetBasket,
     queryKey: ["GetBasket"],
+    initialData: {},
   });
 };
 

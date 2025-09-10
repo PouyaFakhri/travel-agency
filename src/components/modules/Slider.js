@@ -10,10 +10,10 @@ import Message from "../icons/Message";
 import Heart from "../icons/Heart";
 
 const images = [
-  "/images/Slider-1.png",
-  "/images/Slider-2.jpg",
-  "/images/Slider-3.jpg",
-  "/images/Slider-4.jpg",
+  "/Images/Slider-1.png",
+  "/Images/Slider-2.jpg",
+  "/Images/Slider-3.jpg",
+  "/Images/Slider-4.jpg",
 ];
 
 export default function CardStackSlider() {

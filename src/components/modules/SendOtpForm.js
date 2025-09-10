@@ -32,7 +32,6 @@ function SendOtpForm({ closeHandler, setStep, setPhone, phone }) {
   };
   return (
     <>
-      {/* Close Button */}
       <Close
         onClick={() => closeHandler()}
         className="absolute left-[5%] top-[5%] cursor-pointer"
@@ -41,11 +40,9 @@ function SendOtpForm({ closeHandler, setStep, setPhone, phone }) {
         onSubmit={handleSubmit(onSubmit)}
         className="w-[85%] h-full flex flex-col items-center justify-around"
       >
-        {/* title */}
         <h2 className="w-full text-center font-semibold text-[22px] sm:text-[24px] md:text-[28px] text-[#282828]">
           ورود به تورینو
         </h2>
-        {/* input section */}
         <div className="w-full text-center flex flex-col gap-2.5 md:gap-4.5">
           <label htmlFor="mobile" className="font-light text-right">
             شماره موبایل خود را وارد کنید
@@ -62,7 +59,6 @@ function SendOtpForm({ closeHandler, setStep, setPhone, phone }) {
             {errors.mobile?.message}
           </p>
         </div>
-        {/* submit button */}
         <button className="w-full font-VazirFd font-medium text-[18px] text-white bg-[#28A745] h-[54px] leading-[54px] text-center border-[#00000040] border-[1px] border-solid rounded-[6px] cursor-pointer hover:bg-[#24943d] transition-colors duration-200 ">
           ارسال کد تایید
         </button>

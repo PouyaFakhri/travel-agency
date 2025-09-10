@@ -79,7 +79,7 @@ function ClientHeader({ isAuthenticated, phoneNumber }) {
   };
 
   const handleDropdownToggle = () => {
-    setIsDropdownOpen((prev) => !prev); 
+    setIsDropdownOpen((prev) => !prev);
   };
 
   return (

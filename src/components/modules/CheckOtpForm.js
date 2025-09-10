@@ -61,17 +61,14 @@ function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
 
   return (
     <>
-      {/* Back Button */}
       <ArrowLeft
         onClick={() => setStep(1)}
         className="absolute left-[5%] top-[5%] cursor-pointer"
       />
       <div className="w-[85%] h-full flex flex-col items-center justify-around">
-        {/* title */}
         <h2 className="w-full text-center font-semibold text-[22px] text-[#282828] sm:text-[24px] md:text-[28px]">
           کد تایید را وارد کنید
         </h2>
-        {/* input section */}
         <div className="w-full text-center flex flex-col gap-5.5 ">
           <label htmlFor="phone" className="font-light text-right">
             کد تایید به شماره {phone["mobile"]} ارسال شد
@@ -108,7 +105,6 @@ function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
             </button>
           )}
         </div>
-        {/* submit button */}
         <button
           onClick={CheckOtpHandler}
           className="w-full font-VazirFd font-medium text-[18px] text-white bg-[#28A745] h-[54px] leading-[54px] text-center border-[#00000040] border-[1px] border-solid rounded-[6px] cursor-pointer hover:bg-[#24943d] transition-colors duration-200 "

@@ -1,3 +1,5 @@
+"use client";
+
 import { Controller, useForm } from "react-hook-form";
 import DatePicker from "react-multi-date-picker";
 import { CustomPersianFa } from "src/utils/calenderCustom";
@@ -86,7 +88,7 @@ function ProfileForm({ mutate, data }) {
       onSubmit={handleSubmit(onSubmit)}
       className=" w-[100%] flex flex-col sm:flex-row gap-4"
     >
-      <div className="border-1 rounded-[10px] border-[#00000033] p-4 flex flex-col gap-2 sm:flex-1 md:flex-row md:flex-wrap md:justify-between md:gap-5">
+      <div className="border-1 rounded-[10px] border-[#00000033] p-4 sm:pb-10  flex flex-col gap-2 sm:flex-1 md:flex-row md:flex-wrap md:justify-between md:gap-5">
         <div className="flex gap-1 items-center md:w-[100%]">
           <Person />
           <h2 className="font-VazirFd text-2xl font-normal">مشخصات مسافر</h2>

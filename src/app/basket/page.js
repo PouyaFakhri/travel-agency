@@ -25,7 +25,7 @@ function Page() {
           </div>
         </div>
       )}
-      {!isLoading && (!data || !data.title) && (
+      {!isLoading && (!data || Object.keys(data).length === 0) && (
         <div className="w-[100%] flex items-center justify-center max-w-[350px] md:max-w-[500px] lg:max-w-[600px]">
           <div className="w-[90%] flex flex-col items-center justify-center text-center bg-gradient-to-br from-white via-gray-50 to-gray-100 border border-gray-200 rounded-3xl p-5 md:p-8 shadow-xl animate-fadeIn font-YekanBakh">
             <div className="bg-green-100 text-green-600 rounded-full p-6 mb-4 shadow-md">
@@ -46,7 +46,7 @@ function Page() {
           </div>
         </div>
       )}
-      {!isLoading && data?.title && <ProfileForm mutate={mutate} data={data}/>}
+      {!isLoading && data && Object.keys(data).length > 0 && <ProfileForm mutate={mutate} data={data}/>}
     </div>
   );
 }
