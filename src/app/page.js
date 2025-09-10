@@ -20,7 +20,7 @@ async function Home({ searchParams }) {
   const data = await res.json();
 
   return (
-    <div className="w-[100vw] overflow-hidden flex-1 mt-[48px] sm:mt-[60px] md:mt-[73px]">
+    <div className="w-[100vw] overflow-hidden flex-1 mt-[68px] sm:mt-[60px] md:mt-[73px]">
       <Image
         src="/Images/Banner.png"
         width={1440}
