@@ -51,7 +51,7 @@ function Page() {
 
       {hasData && (
         <ul className="w-full border-1 border-[#00000040] rounded-[10px] flex flex-col gap-3">
-          <li className="flex p-2 justify-between bg-[#DBDBDB] font-YekanBakh text-xs md:text-[14px] text-[#282828CC] lg:pl-10 lg:pr-5">
+          <li className="flex p-2 justify-between rounded-t-[10px] bg-[#DBDBDB] font-YekanBakh text-xs md:text-[14px] text-[#282828CC] lg:pl-10 lg:pr-5">
             <h2 className="min-w-[75px] md:min-w-[100px] lg:min-w-[115px] text-center lg:pl-10">
               تاریخ و ساعت
             </h2>

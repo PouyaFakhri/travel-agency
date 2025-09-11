@@ -63,7 +63,7 @@ function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
     <>
       <ArrowLeft
         onClick={() => setStep(1)}
-        className="absolute left-[5%] top-[5%] cursor-pointer"
+        className="absolute stroke-black left-[5%] top-[5%] cursor-pointer"
       />
       <div className="w-[85%] h-full flex flex-col items-center justify-around">
         <h2 className="w-full text-center font-semibold text-[22px] text-[#282828] sm:text-[24px] md:text-[28px]">
