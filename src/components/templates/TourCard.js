@@ -14,15 +14,30 @@ import { Cities } from "src/constants/Cities";
 import { UseAddToBasket } from "src/services/mutations";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { removeCookie } from "src/utils/cookies";
 
 function TourCard({ tourData }) {
   const router = useRouter();
   const { mutate } = UseAddToBasket();
   const clickHandler = () => {
-    mutate(tourData.id , {
+    mutate(tourData.id, {
       onSuccess: () => {
         toast.success("با موفقیت به سبد خرید اضافه شد");
         router.push("/basket");
+      },
+      onError: (error) => {
+        if (
+          error?.status == 401 ||
+          error?.status == 403 ||
+          error?.message == "Refresh token not found" ||
+          error?.message == "خطا در تمدید توکن"
+        ) {
+          removeCookie("accessToken");
+          removeCookie("refreshToken");
+          toast.error("لطفاً وارد حساب کاربری خود شوید");
+        } else {
+          toast.error("خطا در اضافه کردن به سبد خرید");
+        }
       },
     });
   };

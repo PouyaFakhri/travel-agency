@@ -1,6 +1,5 @@
 import axios from "axios";
 import { getCookie, setCookie, removeCookie } from "src/utils/cookies";
-import { toast } from "react-toastify";
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -47,17 +46,14 @@ api.interceptors.response.use(
           const newAccessToken = res.data.accessToken;
           const newRefreshToken = res.data.refreshToken;
           setCookie("accessToken", newAccessToken, 30); // 30 دقیقه
-          setCookie("refreshToken", newRefreshToken, 10080); // 7 روز (10080 دقیقه)
+          setCookie("refreshToken", newRefreshToken, 10080); // 7 روز
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
           return api(originalRequest);
         }
       } catch (err) {
         removeCookie("accessToken");
         removeCookie("refreshToken");
-        toast.error("لطفاً وارد  حساب کاربری خود شوید");
-        setTimeout(() => {
-          window.location.href = "/";
-        }, 400);
+        Promise.reject(err);
       }
     }
 

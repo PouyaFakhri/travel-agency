@@ -1,4 +1,3 @@
-
 import { useMutation } from "@tanstack/react-query";
 import api from "src/config/api";
 import { useQueryClient } from "@tanstack/react-query";
@@ -33,7 +32,7 @@ export const UseAddToBasket = () => {
     mutationKey: ["AddToBasket"],
     onSuccess: () => {
       queryClient.invalidateQueries(["GetBasket"]);
-    },
+    }
   });
 };
 
