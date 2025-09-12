@@ -7,6 +7,9 @@
 پروژه رو می‌تونید به‌صورت زنده اینجا ببینید
 🔗(https://travel-agency-nine-lake.vercel.app/)
 
+لینک بک اند انلاین
+🔗(https://travel-agency-backend-production-b4b3.up.railway.app)
+
 ## ✨ ویژگی‌های کلیدی
 
 - 🔎 **جست‌وجوی پیشرفته تورها**: فیلترهای متنوع (مکان، تاریخ، قیمت، نوع تور) با پشتیبانی از Query String برای تجربه کاربری بهینه.
@@ -56,7 +59,7 @@
 
    ```
 
-3.و فایل .env را باز کرده و مقادیر زیر را وارد کنید:
+3. فایل.env را باز کرده و مقادیر زیر را وارد کنید:
 
 ```bash
 NEXT_PUBLIC_BASE_URL=https://travel-agency-backend-production-b4b3.up.railway.app
