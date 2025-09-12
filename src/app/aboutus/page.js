@@ -47,7 +47,7 @@ export default function AboutUsPage() {
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-8 sm:mb-10">
           داستان ما
         </h2>
-        <div className="relative flex flex-col-reverse md:flex-row-reverse items-center justify-between gap-8 md:gap-0">
+        <div className="relative flex flex-col md:flex-row-reverse items-center justify-between gap-8 md:gap-0">
           {AboutUsMilestones.map((milestone, index) => (
             <div
               key={index}

@@ -24,7 +24,8 @@ function MoreInfo() {
           <Phone className="sm:w-[22px] sm:h-[22px] md:w-[24px] md:h-[24px]" />
         </div>
         <Link
-          href="/contact"
+          href="/buyguide"
+          prefetch={true}
           className="bg-[#10411B] py-2 px-3 sm:px-3 md:px-6 lg:px-9  xxs:px-4 rounded-[9px] cursor-pointer text-white text-[14px] font-medium md:text-[16px] hover:bg-[#28A745] transition-colors duration-200"
         >
           اطلاعات بیشتر

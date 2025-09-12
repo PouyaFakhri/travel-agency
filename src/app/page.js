@@ -18,7 +18,6 @@ async function Home({ searchParams }) {
     cache: "no-store",
   });
   const data = await res.json();
-
   return (
     <div className="w-[100vw] overflow-hidden flex-1 mt-[68px] sm:mt-[60px] md:mt-[73px]">
       <Image
