@@ -8,11 +8,16 @@ import AuthProvider from "src/providers/AuthProvider";
 
 function Page() {
   const { mutate } = UseCheckOut();
-  const { data, isLoading } = UseGetBasket();
+  const { data, isPending, isLoading } = UseGetBasket();
+
+  const loading = isPending || isLoading;
+  const hasData = data && Object.keys(data).length > 0;
+  const isEmpty = !data || Object.keys(data).length === 0;
+
   return (
     <AuthProvider>
       <div className="w-[100%] flex items-start justify-center mt-[35%] xs:mt-[25%] sm:mt-[20%] md:mt-[13%] lg:mt-[10%] mb-8 md:mb-5 lg:mb-10 min-h-[60vh]">
-        {isLoading && (
+        {loading && (
           <div className="w-full flex flex-col items-center justify-center gap-6 min-h-[60vh] animate-pulse">
             <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gray-200" />
             <div className="h-6 w-48 md:w-64 bg-gray-200 rounded-md" />
@@ -27,7 +32,8 @@ function Page() {
             </div>
           </div>
         )}
-        {!isLoading && (!data || Object.keys(data).length === 0) && (
+
+        { !loading && isEmpty && (
           <div className="w-[100%] flex items-center justify-center max-w-[350px] md:max-w-[500px] lg:max-w-[600px]">
             <div className="w-[90%] flex flex-col items-center justify-center text-center bg-gradient-to-br from-white via-gray-50 to-gray-100 border border-gray-200 rounded-3xl p-5 md:p-8 shadow-xl animate-fadeIn font-YekanBakh">
               <div className="bg-green-100 text-green-600 rounded-full p-6 mb-4 shadow-md">
@@ -41,16 +47,15 @@ function Page() {
               </p>
               <Link
                 href="/"
-                className=" px-6 py-3 text-white text-lg md:text-2xl font-bold rounded-full bg-green-600 hover:bg-green-700 shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl"
+                className="px-6 py-3 text-white text-lg md:text-2xl font-bold rounded-full bg-green-600 hover:bg-green-700 shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl"
               >
                 لیست تور ها
               </Link>
             </div>
           </div>
         )}
-        {!isLoading && data && Object.keys(data).length > 0 && (
-          <ProfileForm mutate={mutate} data={data} />
-        )}
+
+        { !loading && hasData && <ProfileForm mutate={mutate} data={data} />}
       </div>
     </AuthProvider>
   );

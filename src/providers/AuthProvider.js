@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-
 import { UseGetUserProfile } from "src/services/queries";
 import { useEffect } from "react";
 
@@ -10,8 +9,10 @@ function AuthProvider({ children }) {
   const { data, isPending } = UseGetUserProfile();
 
   useEffect(() => {
-    if (!data && !isPending) router.push("/");
-  }, [isPending]);
+    if (!isPending && !data) {
+      router.push("/");
+    }
+  }, [data, isPending, router]);
 
   return children;
 }

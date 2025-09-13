@@ -9,7 +9,6 @@ export const UseGetBasket = () => {
   return useQuery({
     queryFn: GetBasket,
     queryKey: ["GetBasket"],
-    initialData: {},
   });
 };
 

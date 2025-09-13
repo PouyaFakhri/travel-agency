@@ -42,10 +42,14 @@ function ProfileForm({ mutate, data }) {
     if (!code) return "";
     return code.toString().padStart(10, "0");
   };
+  
   useEffect(() => {
     if (predata) {
       reset({
-        fullName: (predata.firstName || "") + " " + (predata.lastName || ""),
+        fullName:
+          predata.firstName && predata.lastName
+            ? `${predata.firstName} ${predata.lastName}`
+            : "",
         gender: predata.gender === "male" ? "مرد" : "زن",
         nationalId: formatNationalCode(predata.nationalCode) || "",
         birthDate: predata.birthDate

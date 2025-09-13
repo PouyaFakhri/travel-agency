@@ -8,13 +8,14 @@ import { UseSendOtp } from "src/services/mutations";
 import { UseCheckOtp } from "src/services/mutations";
 import { toast } from "react-toastify";
 import { setCookie } from "src/utils/cookies";
+import { toEnglishDigits } from "src/utils/toEnglishDigits";
 
 function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
   const [otp, setOtp] = useState("");
   const { formattedTime, reset, isRunning } = UseCountdownTimer(120);
   const { mutate: sendOtpMutate, isPending: sendOtpIsPending } = UseSendOtp();
-  const { mutate: checkOtpMutate, isPending: checkOtpIsPending } =
-    UseCheckOtp();
+  const { mutate: checkOtpMutate, isPending: checkOtpIsPending } = UseCheckOtp();
+
   const resendCodeHandler = () => {
     if (sendOtpIsPending) return;
     sendOtpMutate(phone, {
@@ -24,7 +25,7 @@ function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
         reset();
         setOtp("");
       },
-      onError: (err) => {
+      onError: () => {
         toast.error("خطایی رخ داده است");
       },
     });
@@ -38,12 +39,12 @@ function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
     if (checkOtpIsPending) return;
     checkOtpMutate(
       {
-        mobile: phone["mobile"],
+        mobile: phone.mobile,
         code: otp,
       },
       {
         onSuccess: (res) => {
-          toast.success(res?.message || " با موفقیت وارد شدید ");
+          toast.success(res?.message || "با موفقیت وارد شدید");
           setCookie("accessToken", res?.accessToken, 30);
           setCookie("refreshToken", res?.refreshToken, 10080);
           setIsLogin(true);
@@ -51,13 +52,18 @@ function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
         },
         onError: (err) => {
           if (err?.response?.status === 400) {
-            toast.error(" کد وارد شده فاقد اعتبار است ");
+            toast.error("کد وارد شده فاقد اعتبار است");
           } else {
             toast.error("خطایی رخ داده است");
           }
         },
       }
     );
+  };
+
+  const handleOtpChange = (val) => {
+    const englishVal = toEnglishDigits(val);
+    setOtp(englishVal);
   };
 
   return (
@@ -70,20 +76,22 @@ function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
         <h2 className="w-full text-center font-semibold text-[22px] text-[#282828] sm:text-[24px] md:text-[28px]">
           کد تایید را وارد کنید
         </h2>
-        <div className="w-full text-center flex flex-col gap-5.5 ">
+        <div className="w-full text-center flex flex-col gap-5.5">
           <label htmlFor="phone" className="font-light text-right">
-            کد تایید به شماره {phone["mobile"]} ارسال شد
+            کد تایید به شماره {phone.mobile} ارسال شد
           </label>
           <OtpInput
             value={otp}
-            onChange={setOtp}
+            onChange={handleOtpChange}
             numInputs={6}
+            isInputNum
             renderInput={(props) => (
               <input
                 {...props}
                 type="text"
                 inputMode="numeric"
                 pattern="[0-9]*"
+                maxLength={1}
                 className="!direction-ltr mx-auto !w-[15%] sm:!w-[13%] md:!w-[12%] h-11 sm:h-12 md:h-13 border border-gray-300 rounded-md text-center focus:outline-none focus:ring-2 focus:ring-green-500"
               />
             )}
@@ -96,22 +104,20 @@ function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
           />
           {isRunning ? (
             <p>
-              {" "}
-              <span>{formattedTime}</span> تا ارسال مجدد کد{" "}
+              <span>{formattedTime}</span> تا ارسال مجدد کد
             </p>
           ) : (
             <button
               onClick={resendCodeHandler}
-              className=" w-fit self-center cursor-pointer hover:text-[#28A745] transition-colors duration-200"
+              className="w-fit self-center cursor-pointer hover:text-[#28A745] transition-colors duration-200"
             >
-              {" "}
-              ارسال مجدد کد{" "}
+              ارسال مجدد کد
             </button>
           )}
         </div>
         <button
           onClick={CheckOtpHandler}
-          className="w-full font-VazirFd font-medium text-[18px] text-white bg-[#28A745] h-[54px] leading-[54px] text-center border-[#00000040] border-[1px] border-solid rounded-[6px] cursor-pointer hover:bg-[#24943d] transition-colors duration-200 "
+          className="w-full font-VazirFd font-medium text-[18px] text-white bg-[#28A745] h-[54px] leading-[54px] text-center border-[#00000040] border-[1px] border-solid rounded-[6px] cursor-pointer hover:bg-[#24943d] transition-colors duration-200"
         >
           تأیید
         </button>
