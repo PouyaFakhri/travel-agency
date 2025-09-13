@@ -128,7 +128,7 @@ function ClientHeader({ isAuthenticated, phoneNumber }) {
                   onClick={() => setIsDropdownOpen(false)}
                 >
                   <Person className="w-5 h-5 fill-white stroke-[#282828] stroke-[1.5px]" />
-                  <p>اطلاعات حساب کاربری</p>
+                  <p className="min-w-fit">اطلاعات حساب کاربری</p>
                 </Link>
                 <div className="border-t border-gray-300 w-full sm:w-[90%] md:w-[80%] mx-auto"></div>
                 <Link
