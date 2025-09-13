@@ -18,7 +18,7 @@ function PaymentInfo({
     formState: { errors },
     control,
     register,
-    reset
+    reset,
   } = useForm({
     resolver: yupResolver(paymentSchema),
     defaultValues: {
@@ -149,38 +149,44 @@ function PaymentInfo({
       ) : (
         <div className="flex flex-col gap-4 md:gap-7 lg:grid lg:grid-cols-2">
           <div className="flex justify-between md:justify-start md:gap-5 items-center text-[14px]">
-            <p>شماره کارت</p>
+            <p className="min-w-[65px]">شماره کارت</p>
             {userDetails.payment.debitCard_code ? (
-              <p className="text-[#282828] text-[14px] font-VazirFd">
+              <p className="text-[#282828] text-[14px] flex-1 text-left font-VazirFd">
                 {userDetails.payment.debitCard_code}
               </p>
             ) : (
-              <span className="h-[1.5px] w-[13px] bg-black inline-block ml-[20%]"></span>
+              <p className="flex-1 text-center">
+                <span className="h-[1.5px] w-[13px] bg-black inline-block"></span>
+              </p>
             )}
           </div>
 
           <div className="flex justify-between md:justify-start md:gap-5 items-center text-[14px]">
-            <p>شماره شبا</p>
+            <p className="min-w-[65px]">شماره شبا</p>
             {userDetails.payment.shaba_code ? (
               <p
-                className="text-[#282828] text-[14px] font-VazirFd truncate max-w-[70%]"
+                className="text-[#282828] text-[14px] flex-1 text-left font-VazirFd truncate max-w-[70%]"
                 dir="ltr"
               >
                 {userDetails.payment.shaba_code}
               </p>
             ) : (
-              <span className="h-[1.5px] w-[13px] bg-black inline-block ml-[20%]"></span>
+              <p className="flex-1 text-center">
+                <span className="h-[1.5px] w-[13px] bg-black inline-block"></span>
+              </p>
             )}
           </div>
 
           <div className="flex justify-between md:justify-start md:gap-5  items-center text-[14px]">
-            <p>شماره حساب</p>
+            <p className="min-w-[65px]">شماره حساب</p>
             {userDetails.payment.accountIdentifier ? (
-              <p className="text-[#282828] text-[14px] font-VazirFd ">
+              <p className="text-[#282828] text-[14px] flex-1 text-left font-VazirFd ">
                 {userDetails.payment.accountIdentifier}
               </p>
             ) : (
-              <span className="h-[1.5px] w-[13px] bg-black inline-block ml-[20%]"></span>
+              <p className="flex-1 text-center">
+                <span className="h-[1.5px] w-[13px] bg-black inline-block"></span>
+              </p>
             )}
           </div>
         </div>

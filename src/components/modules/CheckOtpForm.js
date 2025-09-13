@@ -12,10 +12,11 @@ import { setCookie } from "src/utils/cookies";
 function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
   const [otp, setOtp] = useState("");
   const { formattedTime, reset, isRunning } = UseCountdownTimer(120);
-  const { mutate: sendOtpMutate , isPending:sendOtpIsPending } = UseSendOtp();
-  const { mutate: checkOtpMutate  , isPending:checkOtpIsPending } = UseCheckOtp();
+  const { mutate: sendOtpMutate, isPending: sendOtpIsPending } = UseSendOtp();
+  const { mutate: checkOtpMutate, isPending: checkOtpIsPending } =
+    UseCheckOtp();
   const resendCodeHandler = () => {
-    if(sendOtpIsPending) return
+    if (sendOtpIsPending) return;
     sendOtpMutate(phone, {
       onSuccess: (res) => {
         toast.success(res?.message);
@@ -34,7 +35,7 @@ function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
       toast.error("کد تأیید باید ۶ رقم باشد");
       return;
     }
-    if(checkOtpIsPending) return
+    if (checkOtpIsPending) return;
     checkOtpMutate(
       {
         mobile: phone["mobile"],
@@ -80,6 +81,9 @@ function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
             renderInput={(props) => (
               <input
                 {...props}
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
                 className="!direction-ltr mx-auto !w-[15%] sm:!w-[13%] md:!w-[12%] h-11 sm:h-12 md:h-13 border border-gray-300 rounded-md text-center focus:outline-none focus:ring-2 focus:ring-green-500"
               />
             )}

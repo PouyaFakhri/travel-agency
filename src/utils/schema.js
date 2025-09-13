@@ -96,7 +96,7 @@ export const paymentSchema = Yup.object().shape({
     .nullable()
     .notRequired()
     .test("is-valid-card", "شماره کارت باید دقیقاً 16 رقم باشد", (value) => {
-      if (!value) return true; // خالی باشه اوکیه
+      if (!value) return true;
       return /^\d{16}$/.test(value);
     }),
 
@@ -148,4 +148,4 @@ const isValidIranianNationalId = (input) => {
   return (sum < 2 && check === sum) || (sum >= 2 && check === 11 - sum);
 };
 
-const phoneRegex = /^09[0-9]{9}$/;
+const phoneRegex = /^(?:[0۰])(?:[9۹])[0-9۰-۹]{9}$/;

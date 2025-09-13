@@ -247,44 +247,52 @@ function PersonalInfo({
       ) : (
         <div className="flex flex-col gap-4 md:grid md:grid-cols-2 md:gap-8">
           <div className="flex justify-between md:justify-start md:gap-5 items-center text-[14px]">
-            <p className="text-[#7D7D7D]">نام و نام خانوادگی</p>
+            <p className="text-[#7D7D7D] flex-1">نام و نام خانوادگی</p>
             {userDetails.firstName || userDetails.lastName ? (
-              <p className="text-[#282828]  text-[14px] font-semibold font-YekanBakh">
+              <p className="text-[#282828] text-[14px] text-center font-semibold font-YekanBakh flex-1">
                 {userDetails.firstName} {userDetails.lastName}
               </p>
             ) : (
-              <span className="h-[1.5px] w-[13px] bg-black inline-block ml-[20%]"></span>
+              <p className="flex-1 text-center">
+                <span className="h-[1.5px] w-[13px] bg-black inline-block"></span>
+              </p>
             )}
           </div>
           <div className="flex justify-between md:justify-start md:gap-5 items-center text-[14px]">
-            <p className="text-[#7D7D7D]">کدملی</p>
+            <p className="text-[#7D7D7D] flex-1">کدملی</p>
             {userDetails.nationalCode &&
             userDetails.nationalCode.trim() !== "" ? (
-              <p className="text-[#282828] text-[14px] font-VazirFd">
+              <p className="text-[#282828] flex-1 text-center text-[14px] font-VazirFd">
                 {userDetails.nationalCode}
               </p>
             ) : (
-              <span className="h-[1.5px] w-[13px] bg-black inline-block ml-[20%]"></span>
+              <p className="flex-1 text-center">
+                <span className="h-[1.5px] w-[13px] bg-black inline-block"></span>
+              </p>
             )}
           </div>
           <div className="flex justify-between md:justify-start md:gap-5 items-center text-[14px]">
-            <p className="text-[#7D7D7D]">جنسیت</p>
+            <p className="text-[#7D7D7D] flex-1">جنسیت</p>
             {userDetails.gender ? (
-              <p className="text-[#282828]  text-[14px] font-semibold font-YekanBakh">
+              <p className="text-[#282828] flex-1 text-center text-[14px] font-semibold font-YekanBakh">
                 {userDetails.gender}
               </p>
             ) : (
-              <span className="h-[1.5px] w-[13px] bg-black inline-block ml-[20%]"></span>
+              <p className="flex-1 text-center">
+                <span className="h-[1.5px] w-[13px] bg-black inline-block"></span>
+              </p>
             )}
           </div>
           <div className="flex justify-between md:justify-start md:gap-5 items-center text-[14px]">
-            <p className="text-[#7D7D7D]">تاریخ تولد</p>
+            <p className="text-[#7D7D7D] flex-1">تاریخ تولد</p>
             {userDetails.birthDate ? (
-              <p className="text-[#282828] text-[14px] font-VazirFd">
+              <p className="text-[#282828] flex-1 text-center text-[14px] font-VazirFd">
                 {userDetails.birthDate}
               </p>
             ) : (
-              <span className="h-[1.5px] w-[13px] bg-black inline-block ml-[20%]"></span>
+              <p className="flex-1 text-center">
+                <span className="h-[1.5px] w-[13px] bg-black inline-block"></span>
+              </p>
             )}
           </div>
         </div>
