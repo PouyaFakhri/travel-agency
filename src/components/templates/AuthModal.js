@@ -5,7 +5,7 @@ import SendOtpForm from "../modules/SendOtpForm";
 import CheckOtpForm from "../modules/CheckOtpForm";
 
 function AuthModal({ modalState }) {
-  const { isAuthModalOn, setIsAuthModalOn, phone, setPhone, setIsLogin } = modalState;
+  const { isAuthModalOn, setIsAuthModalOn } = modalState;
   const [step, setStep] = useState(1);
 
   const closeHandler = () => {
@@ -29,14 +29,11 @@ function AuthModal({ modalState }) {
           <SendOtpForm
             closeHandler={closeHandler}
             setStep={setStep}
-            setPhone={setPhone}
-            phone={phone}
+
           />
         ) : (
           <CheckOtpForm
             setStep={setStep}
-            setIsLogin={setIsLogin}
-            phone={phone}
             setIsAuthModalOn={setIsAuthModalOn}
           />
         )}

@@ -3,6 +3,7 @@ import "./globals.css";
 import Layout from "src/components/layout/Layout";
 import QueryProvider from "src/providers/QueryProvider";
 import { ToastContainer } from "react-toastify";
+import ContextProvider from "src/providers/ContextProvider";
 
 export const metadata = {
   title: "Torino",
@@ -20,19 +21,23 @@ export default function RootLayout({ children }) {
     >
       <body>
         <QueryProvider>
-          <Layout>{children}</Layout>
-          <ToastContainer
-            position="top-right"
-            autoClose={3900}
-            hideProgressBar={false}
-            closeOnClick
-            pauseOnHover
-            draggable
-            theme="dark"
-            toastClassName="super-toast"
-            bodyClassName="super-toast-body"
-            progressClassName="super-toast-progress"
-          />
+          <ContextProvider>
+            <Layout>{children}</Layout>
+            <ToastContainer
+              position="top-right"
+              autoClose={3900}
+              hideProgressBar={false}
+              closeOnClick
+              pauseOnHover
+              draggable
+              draggableDirection="x"
+              draggablePercent={50}
+              theme="dark"
+              toastClassName="super-toast"
+              bodyClassName="super-toast-body"
+              progressClassName="super-toast-progress"
+            />
+          </ContextProvider>
         </QueryProvider>
       </body>
     </html>

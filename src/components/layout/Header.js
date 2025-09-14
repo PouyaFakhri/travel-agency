@@ -29,12 +29,13 @@ const ButtonFallback = () => (
 export default async function Header() {
   const cookieStore = await cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
+
   let phoneNumber = "";
-  let isAuthenticated = false;
+  let isUserAuthenticated = false;
   if (accessToken) {
     try {
       phoneNumber = jwtDecode(accessToken)?.mobile;
-      isAuthenticated = true;
+      isUserAuthenticated = true;
     } catch (err) {
       console.error("توکن نامعتبر است");
     }
@@ -57,10 +58,7 @@ export default async function Header() {
         </Suspense>
       </div>
       <Suspense fallback={<ButtonFallback />}>
-        <ClientHeader
-          isAuthenticated={isAuthenticated}
-          phoneNumber={phoneNumber}
-        />
+        <ClientHeader phoneNumber={phoneNumber} isUserAuthenticated={isUserAuthenticated} />
       </Suspense>
     </header>
   );

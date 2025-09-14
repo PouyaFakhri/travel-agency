@@ -9,12 +9,18 @@ import { UseCheckOtp } from "src/services/mutations";
 import { toast } from "react-toastify";
 import { setCookie } from "src/utils/cookies";
 import { toEnglishDigits } from "src/utils/toEnglishDigits";
+import { useContext } from "react";
+import { PhoneContext } from "src/context/PhoneContext";
+import { AuthContext } from "src/context/AuthContext";
 
-function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
+function CheckOtpForm({ setStep, setIsAuthModalOn }) {
+  const { setIsAuthenticated } = useContext(AuthContext);
+  const { phone } = useContext(PhoneContext);
   const [otp, setOtp] = useState("");
   const { formattedTime, reset, isRunning } = UseCountdownTimer(120);
   const { mutate: sendOtpMutate, isPending: sendOtpIsPending } = UseSendOtp();
-  const { mutate: checkOtpMutate, isPending: checkOtpIsPending } = UseCheckOtp();
+  const { mutate: checkOtpMutate, isPending: checkOtpIsPending } =
+    UseCheckOtp();
 
   const resendCodeHandler = () => {
     if (sendOtpIsPending) return;
@@ -47,7 +53,7 @@ function CheckOtpForm({ setStep, phone, setIsAuthModalOn, setIsLogin }) {
           toast.success(res?.message || "با موفقیت وارد شدید");
           setCookie("accessToken", res?.accessToken, 30);
           setCookie("refreshToken", res?.refreshToken, 10080);
-          setIsLogin(true);
+          setIsAuthenticated(true);
           setIsAuthModalOn(false);
         },
         onError: (err) => {

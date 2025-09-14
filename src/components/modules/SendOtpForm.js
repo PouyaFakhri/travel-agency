@@ -6,10 +6,14 @@ import { phoneSchema } from "src/utils/schema";
 import Close from "../icons/Close";
 import { UseSendOtp } from "src/services/mutations";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { PhoneContext } from "src/context/PhoneContext";
+import { AuthContext } from "src/context/AuthContext";
 
-function SendOtpForm({ closeHandler, setStep, setPhone, phone }) {
+function SendOtpForm({ closeHandler, setStep }) {
+  const { setPhone } = useContext(PhoneContext);
   const schema = phoneSchema();
-  const { mutate , isPending } = UseSendOtp();
+  const { mutate, isPending } = UseSendOtp();
   const {
     register,
     handleSubmit,
@@ -17,7 +21,7 @@ function SendOtpForm({ closeHandler, setStep, setPhone, phone }) {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
-    if(isPending) return
+    if (isPending) return;
     mutate(data, {
       onSuccess: (res) => {
         toast.success(res?.message);

@@ -15,6 +15,11 @@ import Call from "../icons/Call";
 import ArrowDown from "../icons/ArrowDown";
 import LogOut from "../icons/LogOut";
 import Basket from "../icons/Basket";
+import { useContext } from "react";
+import { AuthContext } from "src/context/AuthContext";
+import { PhoneContext } from "src/context/PhoneContext";
+import { getCookie } from "src/utils/cookies";
+import { jwtDecode } from "jwt-decode";
 
 const navLinks = [
   { href: "/", label: "صفحه ی اصلی", icon: Home },
@@ -23,16 +28,30 @@ const navLinks = [
   { href: "/contact", label: "تماس با ما", icon: Call },
 ];
 
-function ClientHeader({ isAuthenticated, phoneNumber }) {
+function ClientHeader({ phoneNumber, isUserAuthenticated }) {
   const pathName = usePathname();
   const router = useRouter();
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  const { phone, setPhone } = useContext(PhoneContext);
   const dropdownRef = useRef(null);
   const buttonRef = useRef(null);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [isAuthModalOn, setIsAuthModalOn] = useState(false);
-  const [isLogin, setIsLogin] = useState(isAuthenticated);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [phone, setPhone] = useState({ mobile: "" });
+
+  useEffect(() => {
+    try {
+      const accessToken = getCookie("accessToken");
+      if (accessToken) {
+        const decoded = jwtDecode(accessToken);
+        setPhone(decoded?.mobile || "");
+        setIsAuthenticated(true);
+      }
+    } catch (err) {
+      console.error("توکن نامعتبر است", err);
+      setIsAuthenticated(false);
+    }
+  }, []);
 
   useEffect(() => {
     setIsDropdownOpen(false);
@@ -64,13 +83,13 @@ function ClientHeader({ isAuthenticated, phoneNumber }) {
   const handleLogout = () => {
     removeCookie("accessToken");
     removeCookie("refreshToken");
-    setIsLogin(false);
+    setIsAuthenticated(false);
     setIsDropdownOpen(false);
     setPhone("");
   };
 
   const basketHandler = () => {
-    if (isLogin) {
+    if (isAuthenticated) {
       router.prefetch("/basket");
       router.push("/basket");
     } else {
@@ -90,8 +109,8 @@ function ClientHeader({ isAuthenticated, phoneNumber }) {
       >
         <Burger />
       </button>
-      <div className={`flex ${isLogin ? "gap-0" : "gap-1"}`}>
-        {isLogin ? (
+      <div className={`flex ${isAuthenticated ? "gap-0" : "gap-1"}`}>
+        {isAuthenticated || isUserAuthenticated ? (
           <div className="relative">
             <button
               ref={buttonRef}
@@ -163,7 +182,7 @@ function ClientHeader({ isAuthenticated, phoneNumber }) {
         )}
         <div
           className={`flex items-center justify-center rounded-lg ${
-            isLogin
+            isAuthenticated || isUserAuthenticated
               ? "border-none min-w-[30px] min-h-[40px]"
               : "border-[1.5px] sm:border-[1.6px] border-[#28A745] rounded-[8px] min-w-[40px] min-h-[40px]"
           } cursor-pointer hover:bg-[#28A745]/10 transition-all duration-200`}
@@ -209,10 +228,7 @@ function ClientHeader({ isAuthenticated, phoneNumber }) {
         <AuthModal
           modalState={{
             setIsAuthModalOn,
-            isAuthModalOn,
-            phone,
-            setPhone,
-            setIsLogin,
+            isAuthModalOn
           }}
         />
       )}

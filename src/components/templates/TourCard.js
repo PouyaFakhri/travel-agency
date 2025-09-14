@@ -9,37 +9,50 @@ import Routing from "../icons/Routing";
 import Star from "../icons/Star";
 import TourPerson from "../icons/TourPerson";
 import Zarfiat from "../icons/Zarfiat";
+import { useState } from "react";
 import { UseShamsiDater } from "src/hooks/UseShamsiDater";
 import { Cities } from "src/constants/Cities";
 import { UseAddToBasket } from "src/services/mutations";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { removeCookie } from "src/utils/cookies";
+import { useContext } from "react";
+import { AuthContext } from "src/context/AuthContext";
+import AuthModal from "./AuthModal";
 
 function TourCard({ tourData }) {
   const router = useRouter();
   const { mutate } = UseAddToBasket();
+  const { isAuthenticated } = useContext(AuthContext);
+  const [isAuthModalOn, setIsAuthModalOn] = useState(false);
+
   const clickHandler = () => {
-    mutate(tourData.id, {
-      onSuccess: () => {
-        toast.success("با موفقیت به سبد خرید اضافه شد");
-        router.push("/basket");
-      },
-      onError: (error) => {
-        if (
-          error?.status == 401 ||
-          error?.status == 403 ||
-          error?.message == "Refresh token not found" ||
-          error?.message == "خطا در تمدید توکن"
-        ) {
-          removeCookie("accessToken");
-          removeCookie("refreshToken");
-          toast.error("لطفاً وارد حساب کاربری خود شوید");
-        } else {
-          toast.error("خطا در اضافه کردن به سبد خرید");
-        }
-      },
-    });
+    if (isAuthenticated) {
+      mutate(tourData.id, {
+        onSuccess: () => {
+          toast.success("با موفقیت به سبد خرید اضافه شد");
+          router.push("/basket");
+        },
+        onError: (error) => {
+          if (
+            error?.status == 401 ||
+            error?.status == 403 ||
+            error?.message == "Refresh token not found" ||
+            error?.message == "خطا در تمدید توکن"
+          ) {
+            removeCookie("accessToken");
+            removeCookie("refreshToken");
+            toast.error("لطفاً وارد حساب کاربری خود شوید");
+            setIsAuthModalOn(true);
+          } else {
+            toast.error("خطا در اضافه کردن به سبد خرید");
+          }
+        },
+      });
+    } else {
+      toast.error("لطفاً وارد حساب کاربری خود شوید");
+      setIsAuthModalOn(true);
+    }
   };
   return (
     <div className="w-screen sm:bg-[#F3F3F3] bg-white pt-0 sm:pt-2 pb-10 xs:pb-6 ">
@@ -173,6 +186,14 @@ function TourCard({ tourData }) {
           </p>
         </div>
       </div>
+      {isAuthModalOn && (
+        <AuthModal
+          modalState={{
+            setIsAuthModalOn,
+            isAuthModalOn,
+          }}
+        />
+      )}
     </div>
   );
 }
